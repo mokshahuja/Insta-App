@@ -1,13 +1,39 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import ProfilePicture from '../../components/ProfilePicture'
-import Stories from '../../components/Stories'
-import styles from '../../components/styles'
+import React, {useEffect, useState} from 'react';
+import {View, Text, FlatList, SafeAreaView} from 'react-native';
+import Stories from '../../components/Stories';
+import Post from '../../components/Post/Post';
 
 export default function Home() {
-    return (
-        <React.Fragment>    
-        <Stories />
-        </React.Fragment>
-    )
+  const [pictures, setPictures] = useState([]);
+
+  useEffect(() => {
+    const apiurl = 'https://randomuser.me/api/?results=5';
+    const fetchdata = async () => {
+      const result = await fetch(apiurl);
+      const jsonResult = await result.json();
+      // console.log('results------>', jsonResult);
+      setPictures(jsonResult.results);
+    };
+    fetchdata();
+  }, []);
+
+  console.log(pictures);
+
+  if (pictures === null) {
+    return 'Loading....';
+  }
+
+  return (
+    <SafeAreaView>
+      <FlatList
+        data={pictures}
+        keyExtractor={(item) => item.login.uuid}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={<Stories pictures={pictures} />}
+        renderItem={({item}) => {
+          return <Post item={item} />;
+        }}
+      />
+    </SafeAreaView>
+  );
 }

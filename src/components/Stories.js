@@ -3,20 +3,7 @@ import {View, Text, FlatList} from 'react-native';
 import ProfilePicture from './ProfilePicture';
 import styles from './styles';
 
-export default function Stories() {
-  const [pictures, setPictures] = useState([]);
-
-  useEffect(() => {
-    const apiurl = "https://randomuser.me/api/?results=50"
-    const fetchdata = async () => {
-      const result = await fetch(apiurl);
-      const jsonResult = await result.json()
-      console.log("results------>",jsonResult);
-      setPictures(jsonResult.results)
-    }
-    fetchdata()
-  }, [])
-
+export default function Stories({pictures}) {
 
   return (
     <View style={styles.storyContainer}>
@@ -28,8 +15,7 @@ export default function Stories() {
         renderItem={({item}) => {
           return (
             <View>
-              <ProfilePicture uri={item.picture.medium} />
-              <Text style={styles.storyName}>{'hello'}</Text>
+              <ProfilePicture uri={item.picture.medium} name={item.login.username} />
             </View>
           );
         }}
