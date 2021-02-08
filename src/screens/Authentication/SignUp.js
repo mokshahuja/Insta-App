@@ -4,6 +4,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 import {Input, Button} from 'react-native-elements';
+import {auth} from '../../../backend/firebase';
 
 export default function SignUp({navigation}) {
   const [email, setEmail] = useState('');
@@ -57,7 +58,14 @@ export default function SignUp({navigation}) {
         <Button
           title="SignUp"
           onPress={() => {
-            navigation.navigate('Home');
+            auth
+              .createUserWithEmailAndPassword(email, password)
+              .then((authUser) => {
+                authUser.user.updateProfile({});
+                console.log(authUser);
+              })
+              .catch((error) => console.log(error.message));
+            // navigation.navigate('Home');
           }}
           disabled={
             !email.length || !password.length || !confirmPassword.length
