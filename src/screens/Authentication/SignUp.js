@@ -58,13 +58,13 @@ export default function SignUp({navigation}) {
         <Button
           title="SignUp"
           onPress={() => {
-            auth
-              .createUserWithEmailAndPassword(email, password)
-              .then((authUser) => {
-                authUser.user.updateProfile({});
-                console.log(authUser);
-              })
-              .catch((error) => console.log(error.message));
+            // auth
+            //   .createUserWithEmailAndPassword(email, password)
+            //   .then((authUser) => {
+            //     authUser.user.updateProfile({});
+            //     console.log(authUser);
+            //   })
+            //   .catch((error) => console.log(error.message));
             // navigation.navigate('Home');
           }}
           disabled={

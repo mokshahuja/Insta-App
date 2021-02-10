@@ -43,7 +43,7 @@ export default function DefaultHome() {
         showLabel: false,
       }}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Search" component={Login} />
+      <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Posts" component={SignUp} />
       <Tab.Screen name="Notifications" component={Noti} />
       <Tab.Screen name="Profile" component={Profile} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, Pressable, FlatList, Dimensions} from 'react-native';
+import {View, Text, Image, StyleSheet, Pressable, FlatList, Dimensions, Button} from 'react-native';
 import ProfilePicture from './ProfilePicture';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -28,9 +28,9 @@ export default function StoriesGallery({navigation, route}) {
                 uri={item.picture.thumbnail}
                 size="small"
               />
-              <Pressable onPress={() => navigation.navigate('Home')}>
+              <Button title="Close" onPress={() => navigation.replace('Home')}>
                 <Entypo name="cross" size={20} color="#000" />
-              </Pressable>
+              </Button>
             </View>
             <Image
               source={{uri:item.picture.large}}

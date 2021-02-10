@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {View, Text, FlatList, Pressable} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import ProfilePicture from './ProfilePicture';
 import styles from './styles';
 
-export default function Stories({pictures, navigation}) {
+export default function Stories({ navigation, pictures }) {
   console.log('stories aaya re aaya');
   return (
     <View style={styles.storyContainer}>

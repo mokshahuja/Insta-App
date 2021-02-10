@@ -10,15 +10,15 @@ export default function Login({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
-      if (authUser) {
-        navigation.replace('Home');
-      }
-    });
-    return unsubscribe;
-  }, []);
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
+  //     // console.log(authUser);
+  //     if (authUser) {
+  //       navigation.replace('Home');
+  //     }
+  //   });
+  //   return unsubscribe;
+  // }, []);
 
   return (
     <View style={{height: '100%', backgroundColor: 'white'}}>
@@ -67,20 +67,21 @@ export default function Login({navigation}) {
           onPress={() => {
             navigation.navigate('Home');
           }}
-          disabled={email.length === 0 || password.length === 0}
+          // disabled={email.length === 0 || password.length === 0}
           onPress={() => {
-            console.log('Email', email);
-            console.log('Password', password);
-            auth
-              .signInWithEmailAndPassword(email, password)
-              .then((userData) => {
-                const user = userData.user;
-                console.log(user);
-                navigation.replace('Home');
-              })
-              .catch((error) => {
-                console.log(error.message);
-              });
+            // console.log('Email', email);
+            // console.log('Password', password);
+            // auth
+            //   .signInWithEmailAndPassword(email, password)
+            //   .then((userData) => {
+            //     const user = userData.user;
+            //     console.log(user);
+            //     navigation.replace('Home');
+            //   })
+            //   .catch((error) => {
+            //     console.log(error.message);
+            //   });
+            navigation.replace('Home')
           }}
         />
 
@@ -108,7 +109,7 @@ export default function Login({navigation}) {
         <Button
           title="SignUp"
           onPress={() => {
-            navigation.navigate('SignUp');
+            navigation.replace('SignUp');
           }}
           containerStyle={{backgroundColor: 'blue', size: 20, width: '80%'}}
         />
